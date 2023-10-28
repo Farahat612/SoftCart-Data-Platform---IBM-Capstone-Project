@@ -91,7 +91,7 @@ So, I was required to write an Airflow DAG pipeline that analyzes the log files,
 ### 6. Apache Spark Big Data Analytics
 ![Assignment 06](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/b50004d4-838b-42fc-8b4a-35454cbe80fc)
 
-Thr team has prepared a set of data containing search terms on their e-Commerce platform. So, I was required to:
+The team has prepared a set of data containing search terms on their e-Commerce platform. So, I was required to:
 - Download the data and run analytic queries on it using `pyspark` and `JupyterLab`.
 - Use a pretrained sales forecasting model to predict the sales for 2023.
 
