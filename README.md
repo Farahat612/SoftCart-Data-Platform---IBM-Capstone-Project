@@ -6,7 +6,8 @@ Capstone project for the IBM Data Engineering Professional Certificate program, 
 In this project, I was required to assume the role of an Associate Data Engineer who has recently joined a fictional online e-Commerce company named SoftCart. I was presented with real-world use cases that required me to apply a number of industry standard data engineering solutions.
 
 ## Data Platform Architecture
-![Architecture](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/5c3c5844-306e-4016-93e6-63b49627dd84)
+![Architecture](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/a7806c48-0bd3-476a-baae-ee6383e43e8b)
+
 
 ## Objectives
 - Showcase adeptness in the essential skills for an entry-level data engineering role
@@ -38,11 +39,13 @@ In this project, I was required to assume the role of an Associate Data Engineer
 
 
 ## Project tasks
-![Assignments](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/532cddac-faa2-404d-8113-6bbdc3bb6b6f)
+![Assignments](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/7b3e1687-f282-4dcf-9592-7735ad0e5837)
+
 
 
 ### 1. MySQL Online Transactional Processing Database
-![Assignment 01](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/1d1503ce-a654-4176-bb99-ef32967f6fc9)
+![Assignment 01](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/cdf68893-b346-4ffc-b519-edc0077dc7c1)
+
 
 SoftCart were using MySQL for our online transactional processing, so, based on the sample data given, I was required to:
 - Design the database schema and create a database to store our sales data.
@@ -51,7 +54,8 @@ SoftCart were using MySQL for our online transactional processing, so, based on 
 
 
 ### 2. MongoDB NoSQL Catalog Database
-![Assignment 02](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/25aa4714-949d-4c81-8f7e-5f7e2ccc5767)
+![Assignment 02](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/30435ee0-e6f1-4104-93fb-b542d0cb7f23)
+
 
 All of SoftCart's catalog data was to be stored on a MongoDB NoSQL server, so I was required to:
 - Create the database `catalog` and import their electronics products from `catalog.json` into a collection named `electronics`.
@@ -59,7 +63,8 @@ All of SoftCart's catalog data was to be stored on a MongoDB NoSQL server, so I 
 
 
 ### 3. PostgreSQL Staging Data Warehouse
-![Assignment 03](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/2c899208-7347-4d97-bffd-1fca5dff5cc7)
+![Assignment 03](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/922519dc-1f3a-4dea-bd04-ae002073e717)
+
 
 Both Sales data from MySQL and catalog data from MongoDB were to be periodically extracted and stored into a staging data warehouse running on PostgreSQL, so I was required to:
 - Design a data warehouse star schema using the pgAdmin ERD design tool, ensuring that the table could generate yearly, monthly, daily, and weekly reports.
@@ -68,7 +73,8 @@ Both Sales data from MySQL and catalog data from MongoDB were to be periodically
 
 
 ### 4. IBM Cognos BI Analytics Dashboard
-![Assignment 04](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/2a8e5c57-aaba-4f93-8110-c2f94e41fa41)
+![Assignment 04](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/ccfe4e93-5109-4da3-adec-017472ea431f)
+
 
 The data from the previous stage would be transformed and loaded into a production data warehouse running on IBM Db2 to be connected to IBM Cognos Analytics as a data source to generate reports and charts as follows:
 - A line chart of month wise total sales for the year 2020
@@ -77,7 +83,8 @@ The data from the previous stage would be transformed and loaded into a producti
 
 
 ### 5. ETL & Data Pipelines
-![Assignment 05](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/81b82e91-d382-4176-810e-5ba56a9a71ea)
+![Assignment 05](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/10c9fd05-8c71-447c-bdd4-a2e131667e48)
+
 
 1. Python Scripts & Automation.
 SoftCart needed to keep data synchronized between different databases and data warehouses as a part of their daily routine. So, one task that was routinely performed was syncing of staging data warehouse and production data warehouse.
@@ -89,7 +96,8 @@ So, I was required to write an Airflow DAG pipeline that analyzes the log files,
 
 
 ### 6. Apache Spark Big Data Analytics
-![Assignment 06](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/b50004d4-838b-42fc-8b4a-35454cbe80fc)
+![Assignment 06](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/46e6096f-7566-4040-a63b-bac556c507d8)
+
 
 The team has prepared a set of data containing search terms on their e-Commerce platform. So, I was required to:
 - Download the data and run analytic queries on it using `pyspark` and `JupyterLab`.
