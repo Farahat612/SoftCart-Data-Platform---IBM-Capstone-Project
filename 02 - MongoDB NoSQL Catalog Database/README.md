@@ -192,7 +192,7 @@ mongoexport -u root -p MTY3MzYtbw9oYW1l --authenticationDatabase admin --db cata
 > ```
 
 
-##
+## View Third Task
 
 These were all exercises in the second module of the project.
 Visit the next module [here](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/tree/main/03%20-%20PostgreSQL%20Staging%20Data%20Warehouse).
