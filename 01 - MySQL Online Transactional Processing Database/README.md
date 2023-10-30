@@ -4,7 +4,8 @@
 > - Create an index on the timestamp column.
 > - Write an administrative bash script that exports sales data into a SQL file.
 
-![Assignment 01](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/f4401092-39f6-4810-8922-90d1034958a5)
+![Assignment 01](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/e12ae935-10e6-4d08-a572-44e17153144b)
+
 
 
 
