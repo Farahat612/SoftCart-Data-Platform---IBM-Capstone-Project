@@ -16,7 +16,7 @@ You are a data engineer at an e-commerce company. Your company needs you to desi
 
 ## Database Schema
 <p align="center">
-  <img width="80%" src="sampledata.png">
+  <img src="sampledata.png">
 </p>
 
 So, according to the provided sample data, the schema will contain the following columns:
