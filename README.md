@@ -99,13 +99,13 @@ The data from the previous stage would be transformed and loaded into a producti
 </p>
 
 
-1. Python Scripts & Automation.
-SoftCart needed to keep data synchronized between different databases and data warehouses as a part of their daily routine. So, one task that was routinely performed was syncing of staging data warehouse and production data warehouse.
-So, I was required to write a script that will automate the process of regularly updating the DB2 instance with new records from MySQL.
+1. Python Scripts & Automation:
+> SoftCart needed to keep data synchronized between different databases and data warehouses as a part of their daily routine. > So, one task that was routinely performed was syncing of staging data warehouse and production data warehouse.
+> So, I was required to write a script that will automate the process of regularly updating the DB2 instance with new records from MySQL.
 
-2. Apache Airflow ETL & Data Pipelines
-SoftCart has imported web server log files as `accesslog.txt`.
-So, I was required to write an Airflow DAG pipeline that analyzes the log files, extracts the required lines and fields, transforms and loads the data to an existing file.
+2. Apache Airflow ETL & Data Pipelines:
+> SoftCart has imported web server log files as `accesslog.txt`.
+> So, I was required to write an Airflow DAG pipeline that analyzes the log files, extracts the required lines and fields, transforms and loads the data to an existing file.
 
 
 ### 6. Apache Spark Big Data Analytics
