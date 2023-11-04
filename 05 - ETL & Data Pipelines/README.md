@@ -344,10 +344,103 @@ Hence, our automation script workedsuccessfully, let's go to the second part of 
 
 
 ## Provided Scenario
-Write a pipeline that analyzes the web server log file, extracts the required lines (ending with `html`) and fields (`time stamp`, `size` ) and transforms (`bytes` to `mb`) and load (append to an existing file.)
+SoftCart has imported web server log files as `accesslog.txt`. Write an Airflow DAG pipeline that analyzes the log files, extracts the required lines (ending with `html`) and fields (`time stamp`, `size` ), transforms (`bytes` to `mb`) and loads the data to an existing file.
 
 
+## Outline
+To automate ETL pipelines using Airflow DAGs, we write Python scripts. I wrote a script called `process_web_log.py` that extracts web server log data, filters out a specified IP address, and loads the new data into a log file `weblog.tar`.
 
+
+## Excercise 01 : Create a DAG
+I was required to create a DAG that perdorms the following tasks:
+- `extract_data`
+  > This task should extract the `ipaddress` field from the web server log file `accesslog.txt` and save it into a file named `extracted_data.txt`
+- `transform_data`
+  > This task should filter out all the occurrences of `ipaddress` `198.46.149.143` from `extracted_data.txt` and save the output to a file named `transformed_data.txt`
+- `load_data`
+  > This task should archive the file `transformed_data.txt` into a tar file named `weblog.tar`
+
+
+### DAG python Script
+
+```python
+# Library Imports
+from airflow import DAG
+from airflow.operators.bash_operator import BashOperator
+import datetime as dt
+
+
+# DAG Arguments
+default_args = {
+  'owner': 'me',
+  'start_date': dt.datetime(2023,10,26),
+  'email': ['brandon@ibmcapstone.org'],
+}
+
+
+# DAG Definition
+dag=DAG(
+  'process_web_log',
+  description='ETL pipeline for SoftCart access log',
+  default_args=default_args,
+  schedule_interval=dt.timedelta(days=1),
+)
+
+
+# Task Definitions
+extract_data = BashOperator(
+  task_id='extract_data',
+  bash_command='cut -f1 -d" " $AIRFLOW_HOME/dags/capstone/accesslog.txt > $AIRFLOW_HOME/dags/capstone/extracted_data.txt',
+  dag=dag,
+)
+
+transform_data = BashOperator(
+  task_id='transform_data',
+  bash_command='grep -vw "198.46.149.143" $AIRFLOW_HOME/dags/capstone/extracted_data.txt > $AIRFLOW_HOME/dags/capstone/transformed_data.txt',
+  dag=dag,
+)
+
+load_data = BashOperator(
+  task_id='load_data',
+  bash_command='tar -zcvf $AIRFLOW_HOME/dags/capstone/weblog.tar $AIRFLOW_HOME/dags/capstone/transformed_data.txt',
+  dag=dag,
+)
+
+
+# Task Pipeline
+extract_data >> transform_data >> load_data
+
+```
+## Excercise 02 :  Getting the DAG operational
+
+### DAG Submitting
+To submit the DAG, I used the following command:
+```console
+cp process_web_log.py $AIRFLOW_HOME/dags
+```
+
+Then, to confirm the submission of our new DAG, I used `airflow dags list` along with `grep`.
+```console
+airflow dags list | grep 'process_web_log'
+```
+> ```
+> process_web_log.py | me | True
+> ```
+
+
+### Unpausing the DAG
+To run the DAG, I had to unpause it using the following command:
+```console
+airflow dags unpause process_web_log
+```
+> ```
+> Dag: process_web_log, paused: False
+> ```
+
+
+## View Fianl Module
+These were all exercises in this module of the project.
+Visit the next and Final module [here](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/tree/main/06%20-%20Apache%20Spark%20Big%20Data%20Analytics).
 
 
 
