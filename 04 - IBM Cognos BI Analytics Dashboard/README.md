@@ -48,9 +48,9 @@ Create a bar chart of Quarterly sales of mobile phones.
 
 
 
-## View Fifth Task
+## View Fifth Module
 
-These were all exercises in the fourth module of the project.
+These were all exercises in this module of the project.
 Visit the next module [here](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/tree/main/05%20-%20ETL%20%26%20Data%20Pipelines).
 
 
