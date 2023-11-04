@@ -355,9 +355,9 @@ Sample output (first 15 rows).
 
 
 
-## View Fourth Task
+## View Fourth Module
 
-These were all exercises in the third module of the project.
+These were all exercises in this module of the project.
 Visit the next module [here](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/tree/main/04%20-%20IBM%20Cognos%20BI%20Analytics%20Dashboard).
 
 
