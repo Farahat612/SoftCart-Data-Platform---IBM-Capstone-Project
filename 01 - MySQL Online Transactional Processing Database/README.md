@@ -160,6 +160,6 @@ sudo ./datadump.sh
 
 ## View Second Module
 
-These were all exercises in the first module of the project.
+These were all exercises in this module of the project.
 Visit the next module [here](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/tree/main/02%20-%20MongoDB%20NoSQL%20Catalog%20Database).
 
