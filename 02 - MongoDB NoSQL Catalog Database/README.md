@@ -3,7 +3,9 @@
 > - Create the database `catalog` and import their electronics products from `catalog.json` into a collection named `electronics`.
 > - Run test queries against the data and export the collection into a file named `electronics.csv` using only the `_id`, `type`, and `model` fields.
 
-![Assignment 02](https://github.com/Farahat612/SoftCart-Data-Platform---IBM-Capstone-Project/assets/67427124/5b725139-2b0f-480f-96b7-50ac55b13688)
+<p align="center">
+  <img width="100%" src="../Images/assignment02.png">
+</p>
 
 
 ## Provided Scenario
