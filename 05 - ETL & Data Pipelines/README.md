@@ -12,7 +12,7 @@
 </p>
 
 
-# ETL Python Scripts & Automation
+# Python Scripts & Automation
 > In this assignment you will write a python program that will:
 > 
 > - Connect to IBM DB2 or PostgreSQL data warehouse and identify the last row on it.
@@ -24,7 +24,7 @@
 You are a data engineer at an e-commerce company. You need to keep data synchronized between different databases/data warehouses as a part of your daily routine. One task that is routinely performed is the sync up of staging data warehouse and production data warehouse. Automating this sync up will save you a lot of time and standardize your process. You will be given a set of python scripts to start with. You will use/modify them to perform the incremental data load from MySQL server which acts as a staging warehouse to the IBM DB2 or PostgreSQL which is a production data warehouse. This script will be scheduled by the data engineers to sync up the data between the staging and production data warehouse.
 
 
-## Exwecisw 01 : Preparing The Environment
+## Exercise 01 : Preparing The Environment
 
 ### Task 01 - Connecting to MySQL Database with Python
 Firstly I installed the `mysql-connector-python` dependency using pip.
@@ -232,5 +232,123 @@ CREATE TABLE `sales_data` (
 ) ;
 
 ```
+Then, I loaded the data from `sales.csv` into the table `sales_data`.
+
+
+## Exercise 02 : Automating Loading Of Incremental Data Into The Data Warehouse
+I wrote a script `automation.py` that does the following:
+- Use `mysql.connector` and `ibm_db` to connect to MySQL and IBM DB2 respectively
+- Return the `rowid` value of the last column in DB2 as `last_row_id`
+- Return a list of all records from MySQL whose `rowid` is greater than `last_row_id` as `new_records`
+- Insert `new_records` into the DB2 instance
+
+```python
+# Import libraries required for connecting to mysql
+import mysql.connector
+# Import libraries required for connecting to DB2 or PostgreSql
+import ibm_db
+# Connect to MySQL
+connection = mysql.connector.connect(user='root', password='OTczNy1tb2hhbWVk',host='127.0.0.1',database='sales')
+cursor = connection.cursor()
+# Connect to DB2 or PostgreSql
+dsn_hostname = "ba99a9e6-d59e-4883-8fc0-d6a8c9f7a08f.c1ogj3sd0tgtu0lqde00.databases.appdomain.cloud" # e.g.: "dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net"
+dsn_uid = "pql88073"        # e.g. "abc12345"
+dsn_pwd = "1gJmyQwxMGqqc0G9"      # e.g. "7dBZ3wWt9XN6$o0J"
+dsn_port = "31321"                # e.g. "50000" 
+dsn_database = "bludb"            # i.e. "BLUDB"
+dsn_driver = "{IBM DB2 ODBC DRIVER}" # i.e. "{IBM DB2 ODBC DRIVER}"           
+dsn_protocol = "TCPIP"            # i.e. "TCPIP"
+dsn_security = "SSL"              # i.e. "SSL"
+
+
+dsn = (
+    "DRIVER={0};"
+    "DATABASE={1};"
+    "HOSTNAME={2};"
+    "PORT={3};"
+    "PROTOCOL={4};"
+    "UID={5};"
+    "PWD={6};"
+    "SECURITY={7};").format(dsn_driver, dsn_database, dsn_hostname, dsn_port, dsn_protocol, dsn_uid, dsn_pwd, dsn_security)
+
+
+conn = ibm_db.connect(dsn, "", "")
+print ("Connected to database: ", dsn_database, "as user: ", dsn_uid, "on host: ", dsn_hostname)
+
+# Find out the last rowid from DB2 data warehouse or PostgreSql data warehouse
+# The function get_last_rowid must return the last rowid of the table sales_data on the IBM DB2 database or PostgreSql.
+
+def get_last_rowid():
+    last_rowid_sql = 'SELECT rowid FROM sales_data ORDER BY rowid DESC LIMIT 1'
+    last_rowid_stmt = ibm_db.exec_immediate(conn, last_rowid_sql)
+    while ibm_db.fetch_row(last_rowid_stmt) != False:
+        return ibm_db.result(last_rowid_stmt, 0)
+
+last_row_id = get_last_rowid()
+print("Last row id on production datawarehouse = ", last_row_id)
+
+# List out all records in MySQL database with rowid greater than the one on the Data warehouse
+# The function get_latest_records must return a list of all records that have a rowid greater than the last_row_id in the sales_data table in the sales database on the MySQL staging data warehouse.
+
+def get_latest_records(rowid):
+    latest_records_sql = f'SELECT * FROM sales_data WHERE rowid > {last_row_id} ORDER BY rowid ASC'
+    cursor.execute(latest_records_sql)
+    return cursor.fetchall()	
+
+new_records = get_latest_records(last_row_id)
+
+print("New rows on staging datawarehouse = ", len(new_records))
+
+# Insert the additional records from MySQL into DB2 or PostgreSql data warehouse.
+# The function insert_records must insert all the records passed to it into the sales_data table in IBM DB2 database or PostgreSql.
+
+def insert_records(records):
+    insert_sql = "INSERT INTO sales_data (rowid, product_id, customer_id, quantity) VALUES (?,?,?,?);"
+    insert_stmt = ibm_db.prepare(conn, insert_sql)
+    for row in records:
+        ibm_db.execute(insert_stmt, row)
+
+
+insert_records(new_records)
+print("New rows inserted into production datawarehouse = ", len(new_records))
+
+# disconnect from mysql warehouse
+connection.close()
+# disconnect from DB2 or PostgreSql data warehouse 
+ibm_db.close(conn)
+# End of program
+```
+
+Then I tested the data synchronization by running the script as following:
+```console
+python3 automation.py
+```
+> ```
+> Connected to database:  bludb as user:  pql88073 on host:  ba99a9e6-d59e-4883-8fc0-d6a8c9f7a08f.c1ogj3sd0tgtu0lqde00.databases.appdomain.cloud
+> Last row id on production datawarehouse =  12289
+> New rows on staging datawarehouse =  1650
+> New rows inserted into production datawarehouse =  1650
+> ```
+
+Hence, our automation script workedsuccessfully, let's go to the second part of the module.
+
+
+
+
+# Apache Airflow ETL & Data Pipelines
+> In this assignment you will author an Apache Airflow DAG that will:
+> 
+> - Extract data from a web server log file.
+> - Transform the data.
+> - Load the transformed data into a tar file.
+
+
+## Provided Scenario
+Write a pipeline that analyzes the web server log file, extracts the required lines (ending with `html`) and fields (`time stamp`, `size` ) and transforms (`bytes` to `mb`) and load (append to an existing file.)
+
+
+
+
+
 
 
