@@ -310,8 +310,6 @@ Sample output (first 10 rows).
 
 ## Exercise 03 : Materialized Query Table (MQT)
 
-## 3. Materialized Query Table (MQT)
-
 Create an MQT named `total_sales_per_country` based on the columns `country` and `totalsales`.
 
 ```sql
