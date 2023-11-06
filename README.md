@@ -31,7 +31,7 @@ In this project, I was required to assume the role of an Associate Data Engineer
 - BI teams connect to the IBM DB2 for operational dashboard creation. IBM Cognos Analytics is used to create dashboards.
 - SoftCart uses Hadoop cluster as it big data platform where all the data collected for analytics purposes.
 - Spark is used to analyse the data on the Hadoop cluster.
-- To move data between OLTP, NoSQL and the dataware house ETL pipelines are used and these run on Apache Airflow.
+- To move data between OLTP, NoSQL and the data warehouse, ETL pipelines are used and these run on Apache Airflow.
 
 ## Tools/Software
 - **OLTP Database** - MySQL
