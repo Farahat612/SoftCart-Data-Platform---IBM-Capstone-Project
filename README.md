@@ -1,6 +1,10 @@
 # SoftCard's Data Platform --- IBM Data Engineering Capstone Project
 Capstone project for the IBM Data Engineering Professional Certificate program, offered by IBM Skills Network and hosted on Coursera.
 
+> <p align="center">
+>   <img width="100%" src="Images/certificate.png">
+> </p>
+
 
 ## Overview
 In this project, I was required to assume the role of an Associate Data Engineer who has recently joined a fictional online e-Commerce company named SoftCart. I was presented with real-world use cases that required me to apply a number of industry standard data engineering solutions.
