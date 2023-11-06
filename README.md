@@ -2,7 +2,7 @@
 Capstone project for the IBM Data Engineering Professional Certificate program, offered by IBM Skills Network and hosted on Coursera.
 
 > <p align="center">
->   <img width="100%" src="Images/certificate.png">
+>   <img width="100%" src="Images/credly certificate.png">
 > </p>
 
 
